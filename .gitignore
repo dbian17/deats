@@ -37,3 +37,7 @@ __pycache__
 *.egg-info/
 build/
 dist/
+
+api/bin*
+*pyvenv.cfg
+*lib64
