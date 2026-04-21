@@ -1,6 +1,6 @@
 import boto3
-from api.view_model.place_data import PlaceData
-from api.view_model.place_review import PlaceReview
+from app.view_model.place_data import PlaceData
+from app.view_model.place_review import PlaceReview
 
 PLACE_DATA_TABLE_NAME = 'Place-Data'
 PLACE_REVIEW_TABLE_NAME = 'Place-Reviews'

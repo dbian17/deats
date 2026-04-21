@@ -1,10 +1,13 @@
+import sys
+sys.path.insert(0, '.')
+
 import os
 print("blahhhhhhhhhhhhhh", flush=True)
 print(os.getcwd(), flush=True)
-# os.chdir()
+
 from flask import Flask, jsonify, request
 
-from api.dynamo import dynamo_service_client
+from app.dynamo import dynamo_service_client
 
 app = Flask(__name__)
 
