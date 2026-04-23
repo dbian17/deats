@@ -13,6 +13,8 @@ import {
   mantineHtmlProps,
 } from "@mantine/core";
 import { theme } from "../theme";
+import { Header } from "./header";
+import { useMediaQuery } from "@mantine/hooks";
 
 // const metadata = {
 //   title: "Deats",
@@ -21,6 +23,7 @@ import { theme } from "../theme";
 
 export default function RootLayout({ children }: { children: any }) {
   // const [opened, { toggle }] = useDisclosure();
+  const isDesktop = useMediaQuery("(min-width: 48em)");
 
   return (
     <html lang="en" {...mantineHtmlProps}>
@@ -34,24 +37,21 @@ export default function RootLayout({ children }: { children: any }) {
       </head>
       <body>
         <MantineProvider theme={theme}>
-          <AppShell
-            header={{ height: 60 }}
-            navbar={{ width: 300, breakpoint: "sm" }}
-            padding="md"
-          >
-            <AppShell.Header>
-              <Group h="100%" px="md">
-                {/* <Burger opened={opened} onClick={toggle} hiddenFrom="sm" size="sm" /> */}
-                Header has a burger icon below sm breakpoint
-              </Group>
-            </AppShell.Header>
-            <AppShell.Navbar p="md">
-              Navbar is collapsed on mobile at sm breakpoint. At that point it
-              is no longer offset by padding in the main element and it takes
-              the full width of the screen when opened.
-            </AppShell.Navbar>
-            <AppShell.Main>{children}</AppShell.Main>
-          </AppShell>
+          {isDesktop ? (
+            <AppShell header={{ height: 60 }} padding="md">
+              <AppShell.Header>
+                <Header />
+              </AppShell.Header>
+              <AppShell.Main>{children}</AppShell.Main>
+            </AppShell>
+          ) : (
+            <AppShell footer={{ height: 60 }} padding="md">
+              <AppShell.Main>{children}</AppShell.Main>
+              <AppShell.Footer>
+                <Header />
+              </AppShell.Footer>
+            </AppShell>
+          )}
         </MantineProvider>
       </body>
     </html>
