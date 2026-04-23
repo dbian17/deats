@@ -14,6 +14,7 @@ import {
 } from "@mantine/core";
 import { theme } from "../theme";
 import { Header } from "./header";
+import { Footer } from "./footer";
 import { useMediaQuery } from "@mantine/hooks";
 
 // const metadata = {
@@ -48,7 +49,7 @@ export default function RootLayout({ children }: { children: any }) {
             <AppShell footer={{ height: 60 }} padding="md">
               <AppShell.Main>{children}</AppShell.Main>
               <AppShell.Footer>
-                <Header />
+                <Footer />
               </AppShell.Footer>
             </AppShell>
           )}
