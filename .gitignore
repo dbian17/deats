@@ -39,5 +39,6 @@ build/
 dist/
 
 api/bin*
+api/.venv*
 *pyvenv.cfg
 *lib64

@@ -1,9 +1,5 @@
-export const dynamic = 'force-dynamic';
+export const dynamic = "force-dynamic";
 
 export default function Home() {
-  return (
-      <div>
-        place
-      </div>
-  )
+  return <div>place</div>;
 }

@@ -1,13 +1,9 @@
 {
-    "TableName": "Places",
-    "KeySchema": [
-      { "AttributeName": "name", "KeyType": "HASH" }
-    ],
-    "AttributeDefinitions": [
-      { "AttributeName": "name", "AttributeType": "S" }
-    ],    
-    "ProvisionedThroughput": {
-      "ReadCapacityUnits": 5,
-      "WriteCapacityUnits": 5
-    }
+  "TableName": "Places",
+  "KeySchema": [{ "AttributeName": "name", "KeyType": "HASH" }],
+  "AttributeDefinitions": [{ "AttributeName": "name", "AttributeType": "S" }],
+  "ProvisionedThroughput": {
+    "ReadCapacityUnits": 5,
+    "WriteCapacityUnits": 5
+  }
 }
