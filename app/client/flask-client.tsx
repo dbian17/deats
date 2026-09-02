@@ -1,7 +1,11 @@
+// process.env.BASE_URL is only readable server-side; a browser fetch resolves
+// relative URLs against the current page's origin, so it must be skipped there.
+const base_url = typeof window === "undefined" ? (process.env.BASE_URL ?? "") : "";
+
 export async function get_place_list() {
   try {
     return await fetch(
-      "" + process.env.BASE_URL + process.env.NEXT_PUBLIC_BACKEND_URL + "/list/",
+      "" + base_url + process.env.NEXT_PUBLIC_BACKEND_URL + "/list/",
     ).then((res) => (res.ok ? res.json() : []));
   } catch (e) {
     console.log(e);
@@ -13,7 +17,7 @@ export async function get_place_data(place_name: string) {
   try {
     return await fetch(
       "" +
-        process.env.BASE_URL +
+        base_url +
         process.env.NEXT_PUBLIC_BACKEND_URL +
         "/place/" +
         place_name +

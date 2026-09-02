@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import maplibregl from "maplibre-gl";
 import "maplibre-gl/dist/maplibre-gl.css";
 import {
@@ -11,6 +11,7 @@ import {
 } from "../app-context";
 import type { Place } from "../list/place";
 import { placesToPinFeatures } from "./place-pins";
+import PlaceSidePanel from "./PlaceSidePanel";
 
 const MAP_STYLE_URL = "/map-style.json";
 
@@ -20,6 +21,9 @@ export default function PlaceMap({ places }: { places: Place[] }) {
   const desktop = isDesktop();
   const containerRef = useRef<HTMLDivElement>(null);
   const mapRef = useRef<maplibregl.Map | null>(null);
+  const [selectedPlaceName, setSelectedPlaceName] = useState<string | null>(
+    null,
+  );
 
   useEffect(() => {
     if (!containerRef.current || mapRef.current) return;
@@ -77,6 +81,13 @@ export default function PlaceMap({ places }: { places: Place[] }) {
         },
       });
 
+      if (desktop) {
+        map.on("click", "places", (event) => {
+          const placeId = event.features?.[0]?.properties?.id;
+          if (placeId) setSelectedPlaceName(placeId);
+        });
+      }
+
       let currentFeatureCoordinates: string | undefined;
 
       map.on("mousemove", "places", (event) => {
@@ -125,12 +136,20 @@ export default function PlaceMap({ places }: { places: Place[] }) {
 
   return (
     <div
-      ref={containerRef}
       style={{
+        position: "relative",
         height: FULL_PAGE_HEIGHT,
         width: FULL_BLEED_WIDTH,
         margin: FULL_BLEED_MARGIN,
       }}
-    />
+    >
+      <div ref={containerRef} style={{ height: "100%", width: "100%" }} />
+      {desktop && (
+        <PlaceSidePanel
+          placeName={selectedPlaceName}
+          onClose={() => setSelectedPlaceName(null)}
+        />
+      )}
+    </div>
   );
 }
