@@ -23,21 +23,25 @@ export default function DesktopPlaceTable({
       onClick={() => router.push(`/place/${place.name}`)}
       style={{ cursor: "pointer" }}
     >
-      <Table.Td ta="center" fw={700} c="green">
+      <Table.Td ta="left" fw={700} c="green">
         {place.rating ?? ""}
       </Table.Td>
-      <Table.Td ta="center">{getDisplayName(place)}</Table.Td>
-      <Table.Td ta="center">
+      <Table.Td ta="left" fw={500}>
+        {getDisplayName(place)}
+      </Table.Td>
+      <Table.Td ta="left" fw={500}>
         {place.city}, {place.country}
       </Table.Td>
-      <Table.Td ta="center">
+      <Table.Td ta="left">
         {place.types?.map((type) => (
           <Badge key={type} variant="light" mr={4}>
             {type}
           </Badge>
         ))}
       </Table.Td>
-      <Table.Td ta="center">{place.tagline}</Table.Td>
+      <Table.Td ta="left" fw={500}>
+        {place.tagline}
+      </Table.Td>
     </Table.Tr>
   ));
 
@@ -55,11 +59,11 @@ export default function DesktopPlaceTable({
           className={cx(classes.header, { [classes.scrolled]: scrolled })}
         >
           <Table.Tr>
-            <Table.Th ta="center">Rating</Table.Th>
-            <Table.Th ta="center">Name</Table.Th>
-            <Table.Th ta="center">Location</Table.Th>
-            <Table.Th ta="center">Types</Table.Th>
-            <Table.Th ta="center">Tagline</Table.Th>
+            <Table.Th ta="left">Rating</Table.Th>
+            <Table.Th ta="left">Name</Table.Th>
+            <Table.Th ta="left">Location</Table.Th>
+            <Table.Th ta="left">Types</Table.Th>
+            <Table.Th ta="left">Tagline</Table.Th>
           </Table.Tr>
         </Table.Thead>
         <Table.Tbody>{rows}</Table.Tbody>
