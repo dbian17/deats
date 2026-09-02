@@ -5,4 +5,5 @@ export type Place = {
   tagline?: string | null;
   city?: string | null;
   country?: string | null;
+  coordinates?: number[] | null;
 };

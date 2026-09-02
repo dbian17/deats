@@ -18,10 +18,10 @@ def python_route():
 
 @app.route('/map', methods=['GET'])
 @app.route('/map/', methods=['GET'])
-def load_map() :
+def load_map():
     # go in reverse order so top places load last
-    # map_pins = map_view_loader.load(dynamo_service_client.get_all_ranked_place_data(descending=True))
-    return jsonify(message="map")
+    places = dynamo_service_client.get_all_ranked_place_data(descending=True)
+    return jsonify([{**place_data.__dict__} for place_data in places])
     
 @app.route('/list', methods=['GET'])
 @app.route('/list/', methods=['GET'])

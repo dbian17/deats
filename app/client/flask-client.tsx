@@ -20,6 +20,18 @@ export async function get_place_list() {
   }
 }
 
+export async function get_map_data() {
+  try {
+    const data = await fetch(
+      "" + process.env.BASE_URL + process.env.NEXT_PUBLIC_BACKEND_URL + "/map/",
+    ).then((res) => (res.ok ? res.json() : []));
+    return Array.isArray(data) ? data : [];
+  } catch (e) {
+    console.log(e);
+    return [];
+  }
+}
+
 export async function get_place_data(place_name: string) {
   try {
     return await fetch(
