@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { CloseButton, TextInput, type TextInputProps } from "@mantine/core";
 import { MagnifyingGlassIcon } from "@phosphor-icons/react";
-import type { Place } from "../../_model/place";
+import { getDisplayName, type Place } from "../../_model/place";
 
 type SearchBarProps = Omit<
   TextInputProps,
@@ -21,7 +21,7 @@ type SearchBarProps = Omit<
 function placeSearchText(place: Place) {
   return (
     (place.types ?? []).join(",") +
-    place.name +
+    getDisplayName(place) +
     String(place.rating ?? 0) +
     (place.city ?? "") +
     (place.country ?? "")

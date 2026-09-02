@@ -1,4 +1,4 @@
-import type { Place } from "../../_model/place";
+import { getDisplayName, type Place } from "../../_model/place";
 
 export type PlaceFeature = {
   type: "Feature";
@@ -15,7 +15,7 @@ export function placesToPinFeatures(places: Place[]): PlaceFeature[] {
         type: "Feature",
         properties: {
           id: place.name,
-          name: place.name,
+          name: getDisplayName(place),
           rating: place.rating ?? 0,
         },
         // stored as [lat, lng] pairs — GeoJSON needs [lng, lat]

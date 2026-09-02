@@ -2,7 +2,7 @@
 
 import { useRouter } from "next/navigation";
 import { Badge, Group, Stack, Table, Text } from "@mantine/core";
-import type { Place } from "../../_model/place";
+import { getDisplayName, type Place } from "../../_model/place";
 
 export default function MobilePlaceTable({
   places,
@@ -25,7 +25,7 @@ export default function MobilePlaceTable({
             {place.rating ?? ""}
           </Text>
           <Stack gap={3} style={{ flex: 1 }}>
-            <Text fz={27}>{place.name}</Text>
+            <Text fz={27}>{getDisplayName(place)}</Text>
             <Text fz={22} c="dimmed">
               {place.city}, {place.country}
             </Text>

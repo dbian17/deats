@@ -5,7 +5,7 @@ import cx from "clsx";
 import { useRouter } from "next/navigation";
 import { Badge, Table } from "@mantine/core";
 import classes from "./TableScrollArea.module.css";
-import type { Place } from "../../_model/place";
+import { getDisplayName, type Place } from "../../_model/place";
 
 export default function DesktopPlaceTable({
   places,
@@ -26,7 +26,7 @@ export default function DesktopPlaceTable({
       <Table.Td ta="center" fw={700} c="green">
         {place.rating ?? ""}
       </Table.Td>
-      <Table.Td ta="center">{place.name}</Table.Td>
+      <Table.Td ta="center">{getDisplayName(place)}</Table.Td>
       <Table.Td ta="center">
         {place.city}, {place.country}
       </Table.Td>

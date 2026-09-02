@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import { Drawer, Loader } from "@mantine/core";
 import { get_place_data } from "../../_client/flask-client";
 import PlaceDetail from "../../place/PlaceDetail";
-import type { Place } from "../../_model/place";
+import { getDisplayName, type Place } from "../../_model/place";
 
 export const SIDE_PANEL_WIDTH_PERCENT = 30;
 
@@ -43,7 +43,7 @@ export default function PlaceSidePanel({
       onClose={onClose}
       position="left"
       size={`${SIDE_PANEL_WIDTH_PERCENT}%`}
-      title={placeDetail?.name}
+      title={placeDetail ? getDisplayName(placeDetail) : undefined}
       withOverlay={false}
       withinPortal={false}
       styles={{ inner: { position: "absolute", inset: 0 } }}

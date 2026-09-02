@@ -3,9 +3,14 @@ from decimal import Decimal
 
 class PlaceData:
 
-    def __init__(self, name: str, rating: float = 0, types: list[str] = None, tagline: str = None, coordinates: list[float] = None, city: str = None, country: str = None):
+    def __init__(self, name: str, rating: float = 0, types: list[str] = None, tagline: str = None, coordinates: list[float] = None, city: str = None, country: str = None, display_name: str = None):
         self.name = name.lower().replace(" ", "-")
-        
+
+        if display_name:
+            self.display_name = display_name
+        else:
+            self.display_name = None
+
         if rating:
             self.rating = Decimal(str(rating))
         else:

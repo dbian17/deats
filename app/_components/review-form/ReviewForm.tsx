@@ -16,6 +16,7 @@ import type { Place } from "../../_model/place";
 
 type ReviewFormValues = {
   name: string;
+  display_name: string;
   coordinates: string;
   city: string;
   country: string;
@@ -28,6 +29,7 @@ type ReviewFormValues = {
 function placeToFormValues(place?: Partial<Place>): ReviewFormValues {
   return {
     name: place?.name ?? "",
+    display_name: place?.display_name ?? "",
     coordinates: place?.coordinates?.join(", ") ?? "",
     city: place?.city ?? "",
     country: place?.country ?? "",
@@ -59,6 +61,7 @@ export default function ReviewForm({
   async function handleSubmit(values: ReviewFormValues) {
     const place_data: Record<string, unknown> = {};
     if (values.name) place_data.name = values.name;
+    if (values.display_name) place_data.display_name = values.display_name;
     if (values.city) place_data.city = values.city;
     if (values.country) place_data.country = values.country;
     if (values.tagline) place_data.tagline = values.tagline;
@@ -89,6 +92,11 @@ export default function ReviewForm({
     >
       <Stack maw={500} mx="auto" p="md">
         <TextInput label="Name" {...form.getInputProps("name")} />
+        <TextInput
+          label="Display Name"
+          description="Optional — falls back to a title-cased version of Name"
+          {...form.getInputProps("display_name")}
+        />
         <TextInput
           label="Coordinates"
           description="Comma-separated lat, lng pairs"
