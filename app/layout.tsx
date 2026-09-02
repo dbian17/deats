@@ -2,6 +2,7 @@
 
 import "@mantine/core/styles.css";
 import React from "react";
+import { Montserrat } from "next/font/google";
 
 import { useDisclosure } from "@mantine/hooks";
 import {
@@ -23,12 +24,17 @@ import { AppContext } from "./app-context";
 //   description: "Welcome to my personal mind dump",
 // };
 
+const montserrat = Montserrat({
+  subsets: ["latin"],
+  variable: "--font-montserrat",
+});
+
 export default function RootLayout({ children }: { children: any }) {
   // const [opened, { toggle }] = useDisclosure();
   const isDesktop = useMediaQuery("(min-width: 48em)");
 
   return (
-    <html lang="en" {...mantineHtmlProps}>
+    <html lang="en" className={montserrat.variable} {...mantineHtmlProps}>
       <head>
         <ColorSchemeScript />
         <link rel="shortcut icon" href="/favicon.svg" />

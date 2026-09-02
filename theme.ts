@@ -24,4 +24,5 @@ export const theme = createTheme({
     customColor: customColor,
   },
   primaryColor: "customColor",
+  fontFamily: "var(--font-montserrat), sans-serif",
 });
