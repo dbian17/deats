@@ -42,3 +42,6 @@ api/bin*
 api/.venv*
 *pyvenv.cfg
 *lib64
+
+# session notes
+.sessions

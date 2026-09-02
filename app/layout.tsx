@@ -16,6 +16,7 @@ import { theme } from "../theme";
 import { Header } from "./header";
 import { Footer } from "./footer";
 import { useMediaQuery } from "@mantine/hooks";
+import { AppContext } from "./app-context";
 
 // const metadata = {
 //   title: "Deats",
@@ -38,21 +39,23 @@ export default function RootLayout({ children }: { children: any }) {
       </head>
       <body>
         <MantineProvider theme={theme}>
-          {isDesktop ? (
-            <AppShell header={{ height: 60 }} padding="md">
-              <AppShell.Header>
-                <Header />
-              </AppShell.Header>
-              <AppShell.Main>{children}</AppShell.Main>
-            </AppShell>
-          ) : (
-            <AppShell footer={{ height: 60 }} padding="md">
-              <AppShell.Main>{children}</AppShell.Main>
-              <AppShell.Footer>
-                <Footer />
-              </AppShell.Footer>
-            </AppShell>
-          )}
+          <AppContext.Provider value={{ isDesktop }}>
+            {isDesktop ? (
+              <AppShell header={{ height: 60 }} padding="md">
+                <AppShell.Header>
+                  <Header />
+                </AppShell.Header>
+                <AppShell.Main>{children}</AppShell.Main>
+              </AppShell>
+            ) : (
+              <AppShell footer={{ height: 60 }} padding="md">
+                <AppShell.Main>{children}</AppShell.Main>
+                <AppShell.Footer>
+                  <Footer />
+                </AppShell.Footer>
+              </AppShell>
+            )}
+          </AppContext.Provider>
         </MantineProvider>
       </body>
     </html>

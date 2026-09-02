@@ -9,6 +9,17 @@ export async function get_test_data() {
   }
 }
 
+export async function get_place_list() {
+  try {
+    return await fetch(
+      "" + process.env.BASE_URL + process.env.NEXT_PUBLIC_BACKEND_URL + "/list/",
+    ).then((res) => (res.ok ? res.json() : []));
+  } catch (e) {
+    console.log(e);
+    return [];
+  }
+}
+
 export async function get_place_data(place_name: string) {
   try {
     return await fetch(
