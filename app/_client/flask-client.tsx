@@ -28,3 +28,23 @@ export async function get_place_data(place_name: string) {
     return null;
   }
 }
+
+export async function add_place(
+  place_data: Record<string, unknown>,
+  place_review: Record<string, unknown>,
+) {
+  try {
+    const res = await fetch(
+      "" + base_url + process.env.NEXT_PUBLIC_BACKEND_URL + "/place/",
+      {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ place_data, place_review }),
+      },
+    );
+    return res.ok;
+  } catch (e) {
+    console.log(e);
+    return false;
+  }
+}

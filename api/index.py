@@ -4,6 +4,8 @@ sys.path.insert(0, '.')
 from flask import Flask, jsonify, request
 
 from app.dynamo import dynamo_service_client
+from app.view_model.place_data import PlaceData
+from app.view_model.place_review import PlaceReview
 
 app = Flask(__name__)
 
@@ -21,9 +23,11 @@ def get_place(place_name):
     place_review = dynamo_service_client.get_place_review(place_name)
     return jsonify({**place_data.__dict__, **place_review.__dict__})
 
-# @app.route('/place', methods=['POST'])
-# def add_place():
-#     new_place_data = request_parser.parse_place_data(request)
-#     new_place_review = request_parser.parse_place_review(request)
-#     dynamo_service_client.add_place(new_place_data, new_place_review)
-#     return "receive"
+@app.route('/place', methods=['POST'])
+@app.route('/place/', methods=['POST'])
+def add_place():
+    payload = request.get_json()
+    new_place_data = PlaceData(**payload['place_data'])
+    new_place_review = PlaceReview(**payload['place_review'])
+    dynamo_service_client.add_place(new_place_data, new_place_review)
+    return jsonify({'success': True})
