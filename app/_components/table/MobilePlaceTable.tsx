@@ -46,7 +46,7 @@ export default function MobilePlaceTable({
   ));
 
   return (
-    <Table.ScrollContainer minWidth={0} maxHeight={maxHeight}>
+    <Table.ScrollContainer minWidth={0} h={maxHeight} maxHeight={maxHeight}>
       <Table highlightOnHover>
         <Table.Tbody>{rows}</Table.Tbody>
       </Table>

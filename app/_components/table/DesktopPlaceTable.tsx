@@ -44,6 +44,7 @@ export default function DesktopPlaceTable({
   return (
     <Table.ScrollContainer
       minWidth={700}
+      h={maxHeight}
       maxHeight={maxHeight}
       scrollAreaProps={{
         onScrollPositionChange: ({ y }) => setScrolled(y !== 0),
