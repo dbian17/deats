@@ -6,9 +6,14 @@ import { useRouter } from "next/navigation";
 import { Badge, Table } from "@mantine/core";
 import classes from "./TableScrollArea.module.css";
 import type { Place } from "./place";
-import { INSET_PAGE_HEIGHT } from "../app-context";
 
-export default function DesktopPlaceTable({ places }: { places: Place[] }) {
+export default function DesktopPlaceTable({
+  places,
+  maxHeight,
+}: {
+  places: Place[];
+  maxHeight: string;
+}) {
   const router = useRouter();
   const [scrolled, setScrolled] = useState(false);
 
@@ -39,7 +44,7 @@ export default function DesktopPlaceTable({ places }: { places: Place[] }) {
   return (
     <Table.ScrollContainer
       minWidth={700}
-      maxHeight={INSET_PAGE_HEIGHT}
+      maxHeight={maxHeight}
       scrollAreaProps={{
         onScrollPositionChange: ({ y }) => setScrolled(y !== 0),
       }}

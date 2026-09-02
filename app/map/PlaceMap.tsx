@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import maplibregl from "maplibre-gl";
 import "maplibre-gl/dist/maplibre-gl.css";
+import SearchBar from "../SearchBar";
 import {
   isDesktop,
   FULL_PAGE_HEIGHT,
@@ -165,6 +166,25 @@ export default function PlaceMap({ places }: { places: Place[] }) {
       }}
     >
       <div ref={containerRef} style={{ height: "100%", width: "100%" }} />
+      <SearchBar
+        places={places}
+        pos="absolute"
+        w="min(70%, 30rem)"
+        style={{
+          top: "var(--mantine-spacing-md)",
+          left: "50%",
+          transform: "translateX(-50%)",
+          zIndex: 1,
+        }}
+        onSearch={(filteredPlaces) => {
+          const filteredIds = filteredPlaces.map((place) => place.name);
+          mapRef.current?.setFilter("places", [
+            "in",
+            ["get", "id"],
+            ["literal", filteredIds],
+          ]);
+        }}
+      />
       {desktop && (
         <PlaceSidePanel
           placeName={selectedPlaceName}

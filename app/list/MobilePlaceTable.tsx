@@ -3,9 +3,14 @@
 import { useRouter } from "next/navigation";
 import { Badge, Group, Stack, Table, Text } from "@mantine/core";
 import type { Place } from "./place";
-import { INSET_PAGE_HEIGHT } from "../app-context";
 
-export default function MobilePlaceTable({ places }: { places: Place[] }) {
+export default function MobilePlaceTable({
+  places,
+  maxHeight,
+}: {
+  places: Place[];
+  maxHeight: string;
+}) {
   const router = useRouter();
 
   const rows = places.map((place) => (
@@ -41,10 +46,7 @@ export default function MobilePlaceTable({ places }: { places: Place[] }) {
   ));
 
   return (
-    <Table.ScrollContainer
-      minWidth={0}
-      maxHeight={INSET_PAGE_HEIGHT}
-    >
+    <Table.ScrollContainer minWidth={0} maxHeight={maxHeight}>
       <Table highlightOnHover>
         <Table.Tbody>{rows}</Table.Tbody>
       </Table>
