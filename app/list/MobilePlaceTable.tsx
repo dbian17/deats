@@ -3,6 +3,7 @@
 import { useRouter } from "next/navigation";
 import { Badge, Group, Stack, Table, Text } from "@mantine/core";
 import type { Place } from "./place";
+import { INSET_PAGE_HEIGHT } from "../app-context";
 
 export default function MobilePlaceTable({ places }: { places: Place[] }) {
   const router = useRouter();
@@ -42,7 +43,7 @@ export default function MobilePlaceTable({ places }: { places: Place[] }) {
   return (
     <Table.ScrollContainer
       minWidth={0}
-      maxHeight="calc(100dvh - var(--app-shell-header-height, 0rem) - var(--app-shell-footer-height, 0rem) - var(--mantine-spacing-md) * 2)"
+      maxHeight={INSET_PAGE_HEIGHT}
     >
       <Table highlightOnHover>
         <Table.Tbody>{rows}</Table.Tbody>

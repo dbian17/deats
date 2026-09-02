@@ -12,17 +12,6 @@ from app.dynamo import dynamo_service_client
 app = Flask(__name__)
 
 
-@app.route("/")
-def python_route():
-    return jsonify(message="Hello from Flask!")
-
-@app.route('/map', methods=['GET'])
-@app.route('/map/', methods=['GET'])
-def load_map():
-    # go in reverse order so top places load last
-    places = dynamo_service_client.get_all_ranked_place_data(descending=True)
-    return jsonify([{**place_data.__dict__} for place_data in places])
-    
 @app.route('/list', methods=['GET'])
 @app.route('/list/', methods=['GET'])
 def load_list():

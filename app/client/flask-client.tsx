@@ -1,31 +1,8 @@
-export async function get_test_data() {
-  try {
-    return await fetch(
-      "" + process.env.BASE_URL + process.env.NEXT_PUBLIC_BACKEND_URL,
-    ).then((res) => res.text());
-  } catch (e) {
-    console.log(e);
-    return "ya fcked up";
-  }
-}
-
 export async function get_place_list() {
   try {
     return await fetch(
       "" + process.env.BASE_URL + process.env.NEXT_PUBLIC_BACKEND_URL + "/list/",
     ).then((res) => (res.ok ? res.json() : []));
-  } catch (e) {
-    console.log(e);
-    return [];
-  }
-}
-
-export async function get_map_data() {
-  try {
-    const data = await fetch(
-      "" + process.env.BASE_URL + process.env.NEXT_PUBLIC_BACKEND_URL + "/map/",
-    ).then((res) => (res.ok ? res.json() : []));
-    return Array.isArray(data) ? data : [];
   } catch (e) {
     console.log(e);
     return [];

@@ -3,7 +3,12 @@
 import { useEffect, useRef } from "react";
 import maplibregl from "maplibre-gl";
 import "maplibre-gl/dist/maplibre-gl.css";
-import { isDesktop } from "../app-context";
+import {
+  isDesktop,
+  FULL_PAGE_HEIGHT,
+  FULL_BLEED_WIDTH,
+  FULL_BLEED_MARGIN,
+} from "../app-context";
 import type { Place } from "../list/place";
 import { placesToPinFeatures } from "./place-pins";
 
@@ -122,9 +127,9 @@ export default function PlaceMap({ places }: { places: Place[] }) {
     <div
       ref={containerRef}
       style={{
-        height:
-          "calc(100dvh - var(--app-shell-header-height, 0rem) - var(--app-shell-footer-height, 0rem) - var(--mantine-spacing-md) * 2)",
-        width: "100%",
+        height: FULL_PAGE_HEIGHT,
+        width: FULL_BLEED_WIDTH,
+        margin: FULL_BLEED_MARGIN,
       }}
     />
   );

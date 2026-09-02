@@ -1,7 +1,5 @@
-import { get_test_data } from "./client/flask-client";
+import { redirect } from "next/navigation";
 
-export const dynamic = "force-dynamic";
-
-export default async function Home() {
-  return <div> {await get_test_data()}</div>;
+export default function Home() {
+  redirect("/map");
 }
