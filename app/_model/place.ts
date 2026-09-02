@@ -6,4 +6,5 @@ export type Place = {
   city?: string | null;
   country?: string | null;
   coordinates?: number[] | null;
+  review?: string | null;
 };

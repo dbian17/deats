@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { CloseButton, TextInput, type TextInputProps } from "@mantine/core";
 import { MagnifyingGlassIcon } from "@phosphor-icons/react";
-import type { Place } from "./list/place";
+import type { Place } from "../../_model/place";
 
 type SearchBarProps = Omit<
   TextInputProps,

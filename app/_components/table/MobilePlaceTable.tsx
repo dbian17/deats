@@ -2,7 +2,7 @@
 
 import { useRouter } from "next/navigation";
 import { Badge, Group, Stack, Table, Text } from "@mantine/core";
-import type { Place } from "./place";
+import type { Place } from "../../_model/place";
 
 export default function MobilePlaceTable({
   places,

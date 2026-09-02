@@ -5,7 +5,7 @@ import cx from "clsx";
 import { useRouter } from "next/navigation";
 import { Badge, Table } from "@mantine/core";
 import classes from "./TableScrollArea.module.css";
-import type { Place } from "./place";
+import type { Place } from "../../_model/place";
 
 export default function DesktopPlaceTable({
   places,

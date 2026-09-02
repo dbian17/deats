@@ -3,16 +3,18 @@
 import { useEffect, useRef, useState } from "react";
 import maplibregl from "maplibre-gl";
 import "maplibre-gl/dist/maplibre-gl.css";
-import SearchBar from "../SearchBar";
+import SearchBar from "../search/SearchBar";
 import {
   isDesktop,
   FULL_PAGE_HEIGHT,
   FULL_BLEED_WIDTH,
   FULL_BLEED_MARGIN,
-} from "../app-context";
-import type { Place } from "../list/place";
+} from "../../app-context";
+import type { Place } from "../../_model/place";
 import { placesToPinFeatures } from "./place-pins";
-import PlaceSidePanel, { SIDE_PANEL_WIDTH_PERCENT } from "./PlaceSidePanel";
+import PlaceSidePanel, {
+  SIDE_PANEL_WIDTH_PERCENT,
+} from "../side-panel/PlaceSidePanel";
 
 const MAP_STYLE_URL = "/map-style.json";
 

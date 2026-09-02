@@ -13,8 +13,8 @@ import {
   mantineHtmlProps,
 } from "@mantine/core";
 import { theme } from "../theme";
-import { Header } from "./header";
-import { Footer } from "./footer";
+import { Header } from "./_components/layout/header";
+import { Footer } from "./_components/layout/footer";
 import { useMediaQuery } from "@mantine/hooks";
 import { AppContext } from "./app-context";
 

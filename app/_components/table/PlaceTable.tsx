@@ -1,11 +1,11 @@
 "use client";
 
 import { useState } from "react";
-import SearchBar from "../SearchBar";
-import { INSET_PAGE_HEIGHT, isDesktop } from "../app-context";
+import SearchBar from "../search/SearchBar";
+import { INSET_PAGE_HEIGHT, isDesktop } from "../../app-context";
 import DesktopPlaceTable from "./DesktopPlaceTable";
 import MobilePlaceTable from "./MobilePlaceTable";
-import type { Place } from "./place";
+import type { Place } from "../../_model/place";
 
 export default function PlaceTable({ places }: { places: Place[] }) {
   const desktop = isDesktop();

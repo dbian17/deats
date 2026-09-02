@@ -2,8 +2,9 @@
 
 import { useEffect, useState } from "react";
 import { Drawer, Loader } from "@mantine/core";
-import { get_place_data } from "../client/flask-client";
-import PlaceDetail, { type PlaceDetailData } from "../place/PlaceDetail";
+import { get_place_data } from "../../_client/flask-client";
+import PlaceDetail from "../../place/PlaceDetail";
+import type { Place } from "../../_model/place";
 
 export const SIDE_PANEL_WIDTH_PERCENT = 30;
 
@@ -14,9 +15,7 @@ export default function PlaceSidePanel({
   placeName: string | null;
   onClose: () => void;
 }) {
-  const [placeDetail, setPlaceDetail] = useState<PlaceDetailData | null>(
-    null,
-  );
+  const [placeDetail, setPlaceDetail] = useState<Place | null>(null);
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
@@ -52,6 +51,7 @@ export default function PlaceSidePanel({
       {loading ? (
         <Loader />
       ) : placeDetail ? (
+        // This is temporary, eventually this could be its own content instead of referencing something else
         <PlaceDetail place={placeDetail} />
       ) : (
         <div>Place not found</div>

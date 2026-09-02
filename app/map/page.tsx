@@ -1,5 +1,5 @@
-import { get_place_list } from "../client/flask-client";
-import PlaceMap from "./PlaceMap";
+import { get_place_list } from "../_client/flask-client";
+import PlaceMap from "../_components/map/PlaceMap";
 
 export const dynamic = "force-dynamic";
 

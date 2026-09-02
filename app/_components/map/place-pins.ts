@@ -1,4 +1,4 @@
-import type { Place } from "../list/place";
+import type { Place } from "../../_model/place";
 
 export type PlaceFeature = {
   type: "Feature";

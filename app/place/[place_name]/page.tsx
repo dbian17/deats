@@ -1,4 +1,4 @@
-import { get_place_data } from "../../client/flask-client";
+import { get_place_data } from "../../_client/flask-client";
 import PlaceDetail from "../PlaceDetail";
 
 export const dynamic = "force-dynamic";

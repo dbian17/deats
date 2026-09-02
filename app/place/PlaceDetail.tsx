@@ -1,14 +1,6 @@
-export type PlaceDetailData = {
-  name: string;
-  tagline?: string | null;
-  rating?: number | null;
-  city?: string | null;
-  country?: string | null;
-  types?: string[] | null;
-  review?: string | null;
-};
+import type { Place } from "../_model/place";
 
-export default function PlaceDetail({ place }: { place: PlaceDetailData }) {
+export default function PlaceDetail({ place }: { place: Place }) {
   return (
     <div>
       <h1>{place.name}</h1>
