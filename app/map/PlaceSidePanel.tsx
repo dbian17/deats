@@ -5,6 +5,8 @@ import { Drawer, Loader } from "@mantine/core";
 import { get_place_data } from "../client/flask-client";
 import PlaceDetail, { type PlaceDetailData } from "../place/PlaceDetail";
 
+export const SIDE_PANEL_WIDTH_PERCENT = 30;
+
 export default function PlaceSidePanel({
   placeName,
   onClose,
@@ -41,7 +43,7 @@ export default function PlaceSidePanel({
       opened={placeName !== null}
       onClose={onClose}
       position="left"
-      size="30%"
+      size={`${SIDE_PANEL_WIDTH_PERCENT}%`}
       title={placeDetail?.name}
       withOverlay={false}
       withinPortal={false}
