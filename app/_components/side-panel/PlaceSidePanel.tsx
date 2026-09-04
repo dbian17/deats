@@ -1,10 +1,8 @@
 "use client";
 
-import { useEffect, useState } from "react";
 import { Drawer, Loader } from "@mantine/core";
-import { get_place_data } from "../../_client/flask-client";
-import PlaceDetail from "../../place/PlaceDetail";
-import { getDisplayName, type Place } from "../../_model/place";
+import PlaceDetail from "../content/PlaceDetail";
+import { usePlaceData } from "../../_hooks/use-place-data";
 
 export const SIDE_PANEL_WIDTH_PERCENT = 30;
 
@@ -15,27 +13,7 @@ export default function PlaceSidePanel({
   placeName: string | null;
   onClose: () => void;
 }) {
-  const [placeDetail, setPlaceDetail] = useState<Place | null>(null);
-  const [loading, setLoading] = useState(false);
-
-  useEffect(() => {
-    if (!placeName) {
-      setPlaceDetail(null);
-      setLoading(false);
-      return;
-    }
-    let cancelled = false;
-    setPlaceDetail(null);
-    setLoading(true);
-    get_place_data(placeName).then((data) => {
-      if (cancelled) return;
-      setPlaceDetail(data);
-      setLoading(false);
-    });
-    return () => {
-      cancelled = true;
-    };
-  }, [placeName]);
+  const { place, loading } = usePlaceData(placeName);
 
   return (
     <Drawer
@@ -43,16 +21,23 @@ export default function PlaceSidePanel({
       onClose={onClose}
       position="left"
       size={`${SIDE_PANEL_WIDTH_PERCENT}%`}
-      title={placeDetail ? getDisplayName(placeDetail) : undefined}
       withOverlay={false}
       withinPortal={false}
-      styles={{ inner: { position: "absolute", inset: 0 } }}
+      styles={{
+        inner: { position: "absolute", inset: 0 },
+        content: {
+          display: "flex",
+          flexDirection: "column",
+          overflow: "hidden",
+        },
+        body: { flex: 1, minHeight: 0, overflow: "hidden" },
+      }}
     >
       {loading ? (
         <Loader />
-      ) : placeDetail ? (
+      ) : place ? (
         // This is temporary, eventually this could be its own content instead of referencing something else
-        <PlaceDetail place={placeDetail} />
+        <PlaceDetail place={place} />
       ) : (
         <div>Place not found</div>
       )}
