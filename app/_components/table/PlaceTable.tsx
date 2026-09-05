@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { Flex } from "@mantine/core";
 import SearchBar from "../search/SearchBar";
 import { INSET_PAGE_HEIGHT, isDesktop } from "../../app-context";
 import DesktopPlaceTable from "./DesktopPlaceTable";
@@ -12,21 +13,15 @@ export default function PlaceTable({ places }: { places: Place[] }) {
   const [filteredPlaces, setFilteredPlaces] = useState(places);
 
   return (
-    <div
-      style={{
-        display: "flex",
-        flexDirection: "column",
-        height: INSET_PAGE_HEIGHT,
-      }}
-    >
+    <Flex direction="column" h={INSET_PAGE_HEIGHT}>
       <SearchBar places={places} onSearch={setFilteredPlaces} w="100%" mb="md" />
-      <div style={{ flex: 1, minHeight: 0 }}>
+      <Flex flex={1} mih={0}>
         {desktop ? (
-          <DesktopPlaceTable places={filteredPlaces} maxHeight="100%" />
+          <DesktopPlaceTable places={filteredPlaces} />
         ) : (
-          <MobilePlaceTable places={filteredPlaces} maxHeight="100%" />
+          <MobilePlaceTable places={filteredPlaces} />
         )}
-      </div>
-    </div>
+      </Flex>
+    </Flex>
   );
 }
