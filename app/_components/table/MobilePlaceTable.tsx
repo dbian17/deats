@@ -2,7 +2,7 @@
 
 import { useRouter } from "next/navigation";
 import { Badge, Group, Stack, Table, Text } from "@mantine/core";
-import { getDisplayName, type Place } from "../../_model/place";
+import { getDisplayName, getTypeColor, type Place } from "../../_model/place";
 
 export default function MobilePlaceTable({ places }: { places: Place[] }) {
   const router = useRouter();
@@ -25,7 +25,7 @@ export default function MobilePlaceTable({ places }: { places: Place[] }) {
             </Text>
             <Group gap={4} mih={24}>
               {place.types?.map((type) => (
-                <Badge key={type} variant="light">
+                <Badge key={type} variant="light" color={getTypeColor(type)}>
                   {type}
                 </Badge>
               ))}

@@ -1,5 +1,5 @@
 import { Badge, ScrollArea } from "@mantine/core";
-import { getDisplayName, type Place } from "../../_model/place";
+import { getDisplayName, getTypeColor, type Place } from "../../_model/place";
 import classes from "./PlaceDetail.module.css";
 
 export default function PlaceDetail({
@@ -25,7 +25,7 @@ export default function PlaceDetail({
       {place.types && (
         <p>
           {place.types.map((type) => (
-            <Badge key={type} variant="light" mr={4}>
+            <Badge key={type} variant="light" color={getTypeColor(type)} mr={4}>
               {type}
             </Badge>
           ))}

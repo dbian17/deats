@@ -5,7 +5,7 @@ import cx from "clsx";
 import { useRouter } from "next/navigation";
 import { Badge, Paper, Table } from "@mantine/core";
 import classes from "./TableScrollArea.module.css";
-import { getDisplayName, type Place } from "../../_model/place";
+import { getDisplayName, getTypeColor, type Place } from "../../_model/place";
 
 export default function DesktopPlaceTable({ places }: { places: Place[] }) {
   const router = useRouter();
@@ -40,7 +40,7 @@ export default function DesktopPlaceTable({ places }: { places: Place[] }) {
       </Table.Td>
       <Table.Td ta="left">
         {place.types?.map((type) => (
-          <Badge key={type} variant="light" mr={4}>
+          <Badge key={type} variant="light" color={getTypeColor(type)} mr={4}>
             {type}
           </Badge>
         ))}
