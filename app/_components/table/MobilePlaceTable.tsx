@@ -14,23 +14,29 @@ export default function MobilePlaceTable({ places }: { places: Place[] }) {
       style={{ cursor: "pointer" }}
     >
       <Table.Td>
-        <Group wrap="nowrap" align="center" gap="md" py={10}>
-          <Text fz={38} fw={800} c="green" w={130} ta="center">
+        <Group wrap="nowrap" align="center" gap="xs" py={5}>
+          <Text fz={19} fw={800} c="green" w={65} ta="center">
             {place.rating ?? ""}
           </Text>
-          <Stack gap={3} style={{ flex: 1 }}>
-            <Text fz={27}>{getDisplayName(place)}</Text>
-            <Text fz={22} c="dimmed">
+          <Stack gap={1} style={{ flex: 1 }}>
+            <Text fz={14}>{getDisplayName(place)}</Text>
+            <Text fz={11} c="dimmed">
               {place.city}, {place.country}
             </Text>
-            <Group gap={4} mih={24}>
+            <Group gap={2} mih={12}>
               {place.types?.map((type) => (
-                <Badge key={type} variant="light" color={getTypeColor(type)}>
+                <Badge
+                  key={type}
+                  variant="light"
+                  color={getTypeColor(type)}
+                  size="xs"
+                  fz={11}
+                >
                   {type}
                 </Badge>
               ))}
             </Group>
-            <Text fz={22} fs="italic">
+            <Text fz={11} fs="italic">
               {place.tagline || " "}
             </Text>
           </Stack>

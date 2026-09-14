@@ -6,12 +6,13 @@ import { ActionIcon, Container, Loader } from "@mantine/core";
 import { ArrowUDownLeftIcon } from "@phosphor-icons/react";
 import PlaceDetail from "../../_components/content/PlaceDetail";
 import { usePlaceData } from "../../_hooks/use-place-data";
-import { INSET_PAGE_HEIGHT } from "../../app-context";
+import { INSET_PAGE_HEIGHT, isDesktop } from "../../app-context";
 import { base_url } from "../../base-url";
 
 export default function PlacePage() {
   const { place_name } = useParams<{ place_name: string }>();
   const { place, loading } = usePlaceData(place_name);
+  const desktop = isDesktop();
 
   if (loading) {
     return <Loader />;
@@ -38,9 +39,8 @@ export default function PlacePage() {
         style={{
           position: "absolute",
           bottom: 0,
-          left: "100%",
-          marginLeft: 12,
           zIndex: 10,
+          ...(desktop ? { left: "100%", marginLeft: 12 } : { right: 12 }),
         }}
       >
         <ArrowUDownLeftIcon size={16} weight="bold" />

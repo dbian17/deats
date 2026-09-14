@@ -19,7 +19,8 @@ import PlaceSidePanel, {
 const MAP_STYLE_URL = "/map-style.json";
 
 const NYC_CENTER: [number, number] = [-73.96919956110607, 40.723901332022166];
-const INITIAL_ZOOM = 12;
+const INITIAL_ZOOM_DESKTOP = 12;
+const INITIAL_ZOOM_MOBILE = 11;
 const PIN_FOCUS_ZOOM = 16;
 
 export default function PlaceMap({ places }: { places: Place[] }) {
@@ -37,7 +38,7 @@ export default function PlaceMap({ places }: { places: Place[] }) {
       container: containerRef.current,
       style: MAP_STYLE_URL,
       center: NYC_CENTER,
-      zoom: INITIAL_ZOOM,
+      zoom: desktop ? INITIAL_ZOOM_DESKTOP : INITIAL_ZOOM_MOBILE,
     });
     mapRef.current = map;
 
@@ -82,7 +83,7 @@ export default function PlaceMap({ places }: { places: Place[] }) {
           ],
           "circle-radius": desktop
             ? ["interpolate", ["linear"], ["zoom"], 8, 2, 15, 10]
-            : ["interpolate", ["linear"], ["zoom"], 10, 5, 16, 20],
+            : ["interpolate", ["linear"], ["zoom"], 10, 4, 16, 16],
         },
       });
 
