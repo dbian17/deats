@@ -15,6 +15,7 @@ import { placesToPinFeatures } from "./place-pins";
 import PlaceSidePanel, {
   SIDE_PANEL_WIDTH_PERCENT,
 } from "../side-panel/PlaceSidePanel";
+import PlaceSideSheet from "../side-panel/PlaceSideSheet";
 
 const MAP_STYLE_URL = "/map-style.json";
 
@@ -87,31 +88,30 @@ export default function PlaceMap({ places }: { places: Place[] }) {
         },
       });
 
-      if (desktop) {
-        map.on("click", "places", (event) => {
-          const feature = event.features?.[0];
-          if (!feature) return;
+      map.on("click", "places", (event) => {
+        const feature = event.features?.[0];
+        if (!feature) return;
 
-          const placeId = feature.properties?.id;
-          if (placeId) setSelectedPlaceName(placeId);
+        const placeId = feature.properties?.id;
+        if (placeId) setSelectedPlaceName(placeId);
 
-          if (feature.geometry.type === "Point") {
-            const containerWidth = containerRef.current?.clientWidth ?? 0;
-            map.easeTo({
-              center: feature.geometry.coordinates as [number, number],
-              zoom: PIN_FOCUS_ZOOM,
-              // side panel covers the left 30% of the map, so pad the camera
-              // to center the pin within the remaining visible 70%
-              padding: {
-                left: containerWidth * (SIDE_PANEL_WIDTH_PERCENT / 100),
-                top: 0,
-                bottom: 0,
-                right: 0,
-              },
-            });
-          }
-        });
-      }
+        if (desktop && feature.geometry.type === "Point") {
+          map.easeTo({
+            center: feature.geometry.coordinates as [number, number],
+            zoom: PIN_FOCUS_ZOOM,
+            // side panel covers the left 30% of the map, so pad the
+            // camera to center the pin within the remaining visible 70%
+            padding: {
+              left:
+                (containerRef.current?.clientWidth ?? 0) *
+                (SIDE_PANEL_WIDTH_PERCENT / 100),
+              top: 0,
+              bottom: 0,
+              right: 0,
+            },
+          });
+        }
+      });
 
       let currentFeatureCoordinates: string | undefined;
 
@@ -188,8 +188,13 @@ export default function PlaceMap({ places }: { places: Place[] }) {
           ]);
         }}
       />
-      {desktop && (
+      {desktop ? (
         <PlaceSidePanel
+          placeName={selectedPlaceName}
+          onClose={() => setSelectedPlaceName(null)}
+        />
+      ) : (
+        <PlaceSideSheet
           placeName={selectedPlaceName}
           onClose={() => setSelectedPlaceName(null)}
         />
