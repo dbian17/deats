@@ -12,6 +12,12 @@
   }
 }
 
+/* Mantine paints sticky header cells individually, so tint the cells. */
+.header th {
+  background-color: var(--mantine-color-customColor-1);
+  color: var(--mantine-color-customColor-9);
+}
+
 .scrolled {
   box-shadow: var(--mantine-shadow-sm);
 }

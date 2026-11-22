@@ -3,6 +3,7 @@
 import { useRouter } from "next/navigation";
 import { Badge, Group, Stack, Table, Text } from "@mantine/core";
 import { getDisplayName, getTypeColor, type Place } from "../../_model/place";
+import { theme } from "../../../theme";
 
 export default function MobilePlaceTable({ places }: { places: Place[] }) {
   const router = useRouter();
@@ -15,11 +16,19 @@ export default function MobilePlaceTable({ places }: { places: Place[] }) {
     >
       <Table.Td>
         <Group wrap="nowrap" align="center" gap="xs" py={5}>
-          <Text fz={19} fw={800} c="green" w={65} ta="center">
+          <Text
+            fz={19}
+            fw={theme.fontWeights.bold}
+            c={theme.other.ratingTextColor}
+            w={65}
+            ta="center"
+          >
             {place.rating ?? ""}
           </Text>
           <Stack gap={1} style={{ flex: 1 }}>
-            <Text fz={14}>{getDisplayName(place)}</Text>
+            <Text fz={14} fw={theme.fontWeights.medium}>
+              {getDisplayName(place)}
+            </Text>
             <Text fz={11} c="dimmed">
               {place.city}, {place.country}
             </Text>

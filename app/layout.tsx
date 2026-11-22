@@ -36,7 +36,7 @@ export default function RootLayout({ children }: { children: any }) {
   return (
     <html lang="en" className={montserrat.variable} {...mantineHtmlProps}>
       <head>
-        <ColorSchemeScript />
+        <ColorSchemeScript forceColorScheme="light" />
         <link rel="shortcut icon" href="/favicon.svg" />
         <meta
           name="viewport"
@@ -44,7 +44,7 @@ export default function RootLayout({ children }: { children: any }) {
         />
       </head>
       <body style={{ overflow: "hidden" }}>
-        <MantineProvider theme={theme}>
+        <MantineProvider theme={theme} forceColorScheme="light">
           <AppContext.Provider value={{ isDesktop }}>
             {isDesktop ? (
               <AppShell header={{ height: 60 }} padding="md">

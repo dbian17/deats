@@ -1,21 +1,36 @@
 "use client";
-import { useRouter } from "next/navigation";
-import { Button, Group } from "@mantine/core";
+import { usePathname, useRouter } from "next/navigation";
+import { Button, Group, useMantineTheme } from "@mantine/core";
+
+const NAV_LINKS = [
+  { label: "Map", href: "/map" },
+  { label: "List", href: "/list" },
+  { label: "Guide", href: "/guide" },
+];
 
 export function Header() {
   const router = useRouter();
+  const pathname = usePathname();
+  const { navBar } = useMantineTheme().other;
 
   return (
-    <Group h="100%" bg="customColor.6" justify="flex-start" gap={0}>
-      <Button h="100%" radius={0} onClick={() => router.push("/map")}>
-        Map
-      </Button>
-      <Button h="100%" radius={0} onClick={() => router.push("/list")}>
-        List
-      </Button>
-      <Button h="100%" radius={0} onClick={() => router.push("/guide")}>
-        Guide
-      </Button>
+    <Group
+      h="100%"
+      px="md"
+      justify="flex-start"
+      gap="xs"
+      style={{ background: navBar.background }}
+    >
+      {NAV_LINKS.map(({ label, href }) => (
+        <Button
+          key={href}
+          variant={pathname === href ? "navActive" : "nav"}
+          radius="xl"
+          onClick={() => router.push(href)}
+        >
+          {label}
+        </Button>
+      ))}
     </Group>
   );
 }

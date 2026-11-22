@@ -6,6 +6,9 @@ import { useRouter } from "next/navigation";
 import { Badge, Paper, Table } from "@mantine/core";
 import classes from "./TableScrollArea.module.css";
 import { getDisplayName, getTypeColor, type Place } from "../../_model/place";
+import { theme } from "../../../theme";
+
+export const DESKTOP_TABLE_WIDTH = "70%";
 
 export default function DesktopPlaceTable({ places }: { places: Place[] }) {
   const router = useRouter();
@@ -29,13 +32,17 @@ export default function DesktopPlaceTable({ places }: { places: Place[] }) {
       onClick={() => router.push(`/place/${place.name}`)}
       style={{ cursor: "pointer" }}
     >
-      <Table.Td ta="center" fw={700} c="green">
+      <Table.Td
+        ta="center"
+        fw={theme.fontWeights.bold}
+        c={theme.other.ratingTextColor}
+      >
         {place.rating ?? ""}
       </Table.Td>
-      <Table.Td ta="left" fw={500}>
+      <Table.Td ta="left">
         {getDisplayName(place)}
       </Table.Td>
-      <Table.Td ta="left" fw={500}>
+      <Table.Td ta="left">
         {place.city}, {place.country}
       </Table.Td>
       <Table.Td ta="left">
@@ -45,7 +52,7 @@ export default function DesktopPlaceTable({ places }: { places: Place[] }) {
           </Badge>
         ))}
       </Table.Td>
-      <Table.Td ta="left" fw={500}>
+      <Table.Td ta="left">
         {place.tagline}
       </Table.Td>
     </Table.Tr>
@@ -56,12 +63,11 @@ export default function DesktopPlaceTable({ places }: { places: Place[] }) {
       withBorder
       radius="lg"
       shadow="md"
-      w="70%"
+      w={DESKTOP_TABLE_WIDTH}
       mx="auto"
       style={{
         display: "flex",
         flexDirection: "column",
-        borderWidth: 2,
         overflow: "hidden",
       }}
     >

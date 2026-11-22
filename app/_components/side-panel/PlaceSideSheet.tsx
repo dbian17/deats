@@ -5,6 +5,7 @@ import { Box, Center, Drawer, Loader } from "@mantine/core";
 import { useDrag } from "@mantine/hooks";
 import PlaceDetail from "../content/PlaceDetail";
 import { usePlaceData } from "../../_hooks/use-place-data";
+import { theme } from "../../../theme";
 
 export const SIDE_SHEET_HEIGHT_PERCENT = 75;
 const DRAG_CLOSE_THRESHOLD_PERCENT = 50;
@@ -73,7 +74,12 @@ export default function PlaceSideSheet({
         py="xs"
         style={{ touchAction: "none", cursor: "grab", flexShrink: 0 }}
       >
-        <Box w={36} h={4} bg="gray.4" style={{ borderRadius: 999 }} />
+        <Box
+          w={36}
+          h={4}
+          bg="gray.4"
+          style={{ borderRadius: theme.other.pillRadius }}
+        />
       </Center>
       <div style={{ flex: 1, minHeight: 0 }}>
         {loading ? (

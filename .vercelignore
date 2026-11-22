@@ -1,0 +1,8 @@
+api/bin
+api/include
+api/lib
+api/lib64
+api/pyvenv.cfg
+api/build
+api/*.egg-info
+__pycache__

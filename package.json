@@ -30,6 +30,7 @@
     "typescript": "^5"
   },
   "devDependencies": {
+    "baseline-browser-mapping": "^2.11.39",
     "oxlint": "^1.60.0",
     "postcss": "^8.5.10",
     "postcss-preset-mantine": "^1.18.0",

@@ -16,6 +16,7 @@ import PlaceSidePanel, {
   SIDE_PANEL_WIDTH_PERCENT,
 } from "../side-panel/PlaceSidePanel";
 import PlaceSideSheet from "../side-panel/PlaceSideSheet";
+import { theme } from "../../../theme";
 
 const MAP_STYLE_URL = "/map-style.json";
 
@@ -77,10 +78,10 @@ export default function PlaceMap({ places }: { places: Place[] }) {
             "interpolate-hcl",
             ["linear"],
             ["to-number", ["get", "rating"]],
-            2,
-            "#F50C5E",
-            10,
-            "#0CF589",
+            theme.other.ratingColorScale.minRating,
+            theme.other.ratingColorScale.low,
+            theme.other.ratingColorScale.maxRating,
+            theme.other.ratingColorScale.high,
           ],
           "circle-radius": desktop
             ? ["interpolate", ["linear"], ["zoom"], 8, 2, 15, 10]
