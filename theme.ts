@@ -1,6 +1,7 @@
 "use client";
 
 import {
+  Input,
   defaultVariantColorsResolver,
   parseThemeColor,
   MantineColorsTuple,
@@ -86,6 +87,9 @@ export const theme = {
   fontWeights,
   defaultRadius: "md",
   variantColorResolver,
+  components: {
+    Input: Input.extend({ defaultProps: { size: "md" } }),
+  },
   headings: {
     fontWeight: fontWeights.bold,
     textWrap: "pretty",
