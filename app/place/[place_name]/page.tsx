@@ -2,9 +2,10 @@
 
 import { useParams } from "next/navigation";
 import Link from "next/link";
-import { ActionIcon, Container, Loader } from "@mantine/core";
+import { ActionIcon, Container } from "@mantine/core";
 import { ArrowUDownLeftIcon } from "@phosphor-icons/react";
 import PlaceDetail from "../../_components/content/PlaceDetail";
+import CenteredLoader from "../../_components/loader/CenteredLoader";
 import { usePlaceData } from "../../_hooks/use-place-data";
 import { INSET_PAGE_HEIGHT, isDesktop } from "../../app-context";
 import { base_url } from "../../base-url";
@@ -15,7 +16,7 @@ export default function PlacePage() {
   const desktop = isDesktop();
 
   if (loading) {
-    return <Loader />;
+    return <CenteredLoader h={INSET_PAGE_HEIGHT} />;
   }
 
   if (!place) {

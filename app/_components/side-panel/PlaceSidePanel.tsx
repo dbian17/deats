@@ -1,6 +1,7 @@
 "use client";
 
-import { Drawer, Loader } from "@mantine/core";
+import { Drawer } from "@mantine/core";
+import CenteredLoader from "../loader/CenteredLoader";
 import PlaceDetail from "../content/PlaceDetail";
 import { usePlaceData } from "../../_hooks/use-place-data";
 
@@ -34,7 +35,7 @@ export default function PlaceSidePanel({
       }}
     >
       {loading ? (
-        <Loader />
+        <CenteredLoader />
       ) : place ? (
         // This is temporary, eventually this could be its own content instead of referencing something else
         <PlaceDetail place={place} />

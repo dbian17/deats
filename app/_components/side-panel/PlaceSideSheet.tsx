@@ -1,7 +1,8 @@
 "use client";
 
 import { useState } from "react";
-import { Box, Center, Drawer, Loader } from "@mantine/core";
+import { Box, Center, Drawer } from "@mantine/core";
+import CenteredLoader from "../loader/CenteredLoader";
 import { useDrag } from "@mantine/hooks";
 import PlaceDetail from "../content/PlaceDetail";
 import { usePlaceData } from "../../_hooks/use-place-data";
@@ -83,7 +84,7 @@ export default function PlaceSideSheet({
       </Center>
       <div style={{ flex: 1, minHeight: 0 }}>
         {loading ? (
-          <Loader />
+          <CenteredLoader />
         ) : place ? (
           // This is temporary, eventually this could be its own content instead of referencing something else
           <PlaceDetail place={place} />
